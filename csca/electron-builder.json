@@ -1,0 +1,22 @@
+{
+    "appId": "com.gigwey-automata.app",
+    "productName": "Gigwey Automata",
+    "icon": "/icon.png",
+    "files": [
+        "dist-electron/**/*",
+        "dist-react/**/*",
+        "package.json"
+    ],
+    "directories": {
+        "output": "dist",
+        "buildResources": "assets"
+    },
+    "win": {
+        "target": "portable"
+    },
+    "portable": {
+        "artifactName": "${productName}-portable.exe"
+    },
+    "asar": true,
+    "npmRebuild": false
+}

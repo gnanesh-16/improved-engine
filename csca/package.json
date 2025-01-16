@@ -1,0 +1,62 @@
+{
+  "name": "csca",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Gigwey Automata Desktop Application",
+  "author": {
+    "name": "Gnanesh "
+  },
+  "type": "module",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev:react": "vite",
+    "dev": "npm-run-all --parallel dev:react dev:electron",
+    "dev:electron": "npm run transpile:electron && cross-env NODE_ENV=development electron .",
+    "transpile:electron": "tsc -b src/electron/tsconfig.json",
+    "build": "rimraf dist dist-electron dist-react && tsc -b src/electron/tsconfig.json && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "dist:win": "rimraf dist && npm run build && electron-builder --win portable --x64",
+    "package": "electron-builder build --win -c.extraMetadata.main=dist-electron/main.js"
+  },
+  "dependencies": {
+    "os-utils": "^0.0.14",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/os-utils": "^0.0.4",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^8.0.1",
+    "cross-env": "^7.0.3",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^5.0.1",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.18.2",
+    "vite": "^6.0.5"
+  },
+  "build": {
+    "appId": "com.gigwey-automata.app",
+    "productName": "Gigwey Automata",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "dist-electron/**/*",
+      "dist-react/**/*"
+    ],
+    "win": {
+      "target": "portable"
+    }
+  }
+}
